@@ -11,10 +11,18 @@ async function main() {
   const admin = await prisma.employee.upsert({ where: { email: 'admin@example.com' }, update: {}, create: { firstName: 'Admin', lastName: 'User', email: 'admin@example.com', password: pwd, role: 'ADMIN', departmentId: hr.id } });
 
   const managerPwd = await bcrypt.hash('manager123', 10);
-  const manager = await prisma.employee.upsert({ where: { email: 'manager@example.com' }, update: {}, create: { firstName: 'Jane', lastName: 'Manager', email: 'manager@example.com', password: managerPwd, role: 'MANAGER', departmentId: eng.id } });
+  const manager = await prisma.employee.upsert({
+    where: { email: 'manager@example.com' },
+    update: { firstName: 'Ahmed', lastName: 'Manager' },
+    create: { firstName: 'Ahmed', lastName: 'Manager', email: 'manager@example.com', password: managerPwd, role: 'MANAGER', departmentId: eng.id },
+  });
 
   const empPwd = await bcrypt.hash('employee123', 10);
-  const employee = await prisma.employee.upsert({ where: { email: 'employee@example.com' }, update: {}, create: { firstName: 'John', lastName: 'Employee', email: 'employee@example.com', password: empPwd, role: 'EMPLOYEE', departmentId: eng.id } });
+  const employee = await prisma.employee.upsert({
+    where: { email: 'employee@example.com' },
+    update: { firstName: 'Cali', lastName: 'Employee' },
+    create: { firstName: 'Cali', lastName: 'Employee', email: 'employee@example.com', password: empPwd, role: 'EMPLOYEE', departmentId: eng.id },
+  });
 
   console.log('Seed completed');
 }

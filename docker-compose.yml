@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: elms
+      POSTGRES_PASSWORD: elms
+      POSTGRES_DB: elms
+    ports:
+      - "5432:5432"
+    volumes:
+      - elms_pgdata:/var/lib/postgresql/data
+
+volumes:
+  elms_pgdata:

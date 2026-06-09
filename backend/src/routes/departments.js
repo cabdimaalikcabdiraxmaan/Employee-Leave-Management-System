@@ -3,7 +3,7 @@ const router = express.Router();
 const ctrl = require('../controllers/departmentsController');
 const { verifyToken, authorizeRoles } = require('../middleware/auth');
 
-router.get('/', verifyToken, ctrl.list);
+router.get('/', ctrl.list);
 router.get('/:id', verifyToken, ctrl.get);
 router.post('/', verifyToken, authorizeRoles('ADMIN'), ctrl.create);
 router.put('/:id', verifyToken, authorizeRoles('ADMIN'), ctrl.update);

@@ -17,6 +17,7 @@ enum LeaveType {
   ANNUAL
   SICK
   EMERGENCY
+  RESIGNATION
   OTHER
 }
 
@@ -48,6 +49,7 @@ model Employee {
   departmentId Int?
   role       Role      @default(EMPLOYEE)
   leaveRequests LeaveRequest[]
+  approvals  LeaveRequest[] @relation("Approvals")
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
 }
